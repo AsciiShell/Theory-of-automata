@@ -3,7 +3,8 @@ import sys
 bitNumCount = 4
 codeBase = [8, 4, 2, 1]
 codeAdd = 6
-
+# codeBase = [2,4,2,1]
+# codeAdd = 0
 print("Configuration: {}{:+d}".format("".join(map(str, codeBase)), codeAdd))
 
 
@@ -113,8 +114,8 @@ class BitNum:
                 return False
         return True
 
-    def print(self, end='\t'):
-        if self.bits.count(1) == 0:
+    def print(self, end='\t', nonzero_mark=True):
+        if self.bits.count(1) == 0 and not nonzero_mark:
             ColorPrint.print_pass(str(self), end)
         else:
             ColorPrint.print_info(str(self), end)
@@ -123,7 +124,7 @@ class BitNum:
 class Matrix:
     __last_line = None
 
-    def __begin(self, val='', end='\t\t|'):
+    def __begin(self, val='', end='\t\t|\t'):
         if type(val) != str:
             val = str(val)
         if self.__last_line != val:
@@ -151,7 +152,7 @@ class Matrix:
             if print_fix:
                 self.__begin(i)
                 for j in range(10):
-                    (BitNum(i + j) - (BitNum(i) + BitNum(j))).print()
+                    (BitNum(i + j) - (BitNum(i) + BitNum(j))).print(nonzero_mark=False)
                 ColorPrint.print_info('')
 
 
@@ -174,4 +175,4 @@ print("Alphabet:\n\t", end="")
 print(*alphabet, sep="\n\t")
 print()
 
-Matrix().print(print_int=False)
+Matrix().print(print_int=True)
