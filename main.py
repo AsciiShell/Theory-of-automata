@@ -54,6 +54,8 @@ def print_matrix(m):
 class BitNum:
     def __init__(self, value, extra=None):
         if type(value) == int:
+            while value < 0:
+                value = 9 - abs(value)
             self.bits = int_to_bits(value)
         elif type(value) == str:
             self.bits = list(map(int, value))
@@ -97,7 +99,7 @@ class BitNum:
         return BitNum(result[1:], result[0])
 
     def __str__(self):
-        return "{:d}_{}".format(self.extra, "".join(map(str, self.bits)))
+        return "{}".format("".join(map(str, self.bits)))
 
     def __repr__(self):
         return self.__str__()
@@ -174,5 +176,39 @@ alphabet = [BitNum(i) for i in range(10)]
 print("Alphabet:\n\t", end="")
 print(*alphabet, sep="\n\t")
 print()
+alphabet_ = [BitNum(-i) for i in range(10)]
+print("Alphabet neg\nWarning!!!\nNeg Zero works wrong\nAlphabet neg:\n\t", end="")
+print(*alphabet_, sep="\n\t")
+print()
 
-Matrix().print(print_int=True)
+# Matrix().print(print_int=True)
+
+def big_bit_num(n):
+    r = []
+    sign = 1 if n >= 0 else -1
+    for i in str(abs(n)):
+        r.append(BitNum(int(i) * sign))
+    return r
+
+
+def print_big_bit_num(n):
+    r = big_bit_num(n)
+    s = str(n)
+    s += " " * (6 - len(s))
+    print(s, *r, sep="\t")
+
+
+def proc_sum(a, b):
+    print_big_bit_num(a)
+    print_big_bit_num(b)
+    print_big_bit_num(a + b)
+    print()
+
+
+proc_sum(357, 421)
+proc_sum(357, -194)
+proc_sum(468, -743)
+proc_sum(-246, -571)
+
+proc_sum(753, 864)
+proc_sum(-642, -428)
