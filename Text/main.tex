@@ -226,25 +226,40 @@
 	\end{center}
 \end{table}
 
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	S &= abc + a\bar{b}\bar{c} + \bar{a}\bar{b}c + \bar{a}b\bar{c} = \overline{\overline{abc} * \overline{a\bar{b}\bar{c}} * \overline{\bar{a}\bar{b}c} * \overline{\bar{a}b\bar{c}}} - \text{8ЛЭ} \\
 	S &= \overline{\overline{(\bar{a}+\bar{b}+c)} + \overline{(\bar{a}+b+\bar{c})} + \overline{(a+\bar{b}+\bar{c})} + \overline{(a+b+c)}} - \text{8ЛЭ}
 \end{aligned}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	P &= ab + ac + bc = \overline{\overline{ab} * \overline{ac} * \overline{bc}} - \text{4ЛЭ} \\
 	P &= \overline{\overline{(a+b)} + \overline{(a+c)} + \overline{(b+c)}} - \text{4ЛЭ}
 \end{aligned}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 	S = \overline{(\bar{P} + abc) (a + b + c)} = \overline{\overline{(\bar{P} + \overline{\overline{abc}})} + \overline{(a+b+c)}} - \text{6ЛЭ}
-\end{equation}
+\end{equation*}
+
 
 \subsection{Разработка схемы коррекции}
+
+\begin{equation*}
+\begin{aligned}
+K &= \bar{\text{П'}} + \bar{\gamma_2}\bar{\gamma_8} + \bar{\gamma_8}\bar{\gamma_4} = \overline{\text{П'}*\overline{\bar{\gamma_2}\bar{\gamma_8}}*\overline{\bar{\gamma_8}\bar{\gamma_4}}}- \text{6ЛЭ} \\
+K &= \overline{\overline{(\bar{\gamma_8}+\bar{\text{П'}})} + \overline{(\bar{\gamma_4}+\bar{\gamma_2}+\bar{\text{П'}})}} - \text{7ЛЭ}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\text{П} &= \gamma_8\text{П'} + \gamma_4\gamma_2\text{П'} = \overline{\overline{\gamma_8\text{П'}}*\overline{\gamma_4\gamma_2\text{П'}}} - \text{3ЛЭ} \\
+\text{П} &= \overline{\bar{\text{П'}} + \overline{(\gamma_2+\gamma_8)} + \overline{(\gamma_8+\gamma_4)}} - \text{4ЛЭ}
+\end{aligned}
+\end{equation*}
 
 \subsection{Разработка схемы одноразрядного десятичного сумматора}
 
@@ -252,6 +267,33 @@
 
 \subsection{Разработка преобразователя прямого кода в обратный для работы с отрицательными величинами}
 
+\begin{equation*}
+\begin{aligned}
+\widehat{A_8} &= \bar{d} + \bar{c} + \bar{a}b + a\bar{b} = \overline{d*c*\overline{\bar{a}b}*\overline{a\bar{b}}} - \text{5ЛЭ} \\
+\widehat{A_8} &= \overline{abc+\bar{a}\bar{b}} = \overline{\overline{(\bar{a}+\bar{b}+\bar{c})}+\overline{(a+b)}} - \text{6ЛЭ}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\widehat{A_4} &= a\bar{c}\bar{d} + cd + \bar{a}c = \overline{\overline{a\bar{c}\bar{d}}*\overline{cd}*\overline{\bar{a}c}} - \text{7ЛЭ} \\
+\widehat{A_4} &= \overline{ac\bar{d} + \bar{a}\bar{c}}  = 
+\overline{\overline{(a+\bar{c}+d)+\overline{(a+c)}}}- \text{4ЛЭ}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\widehat{A_2} &= d - \text{0ЛЭ}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\widehat{A_1} &= \bar{a}e + a\bar{e} = \overline{\overline{\bar{a}e}*a\bar{e}} - \text{5ЛЭ} \\
+\widehat{A_1} &= \overline{ae+\bar{a}\bar{e}} = \overline{\overline{(\bar{a}+\bar{e})}+\overline{(a+e)}} - \text{5ЛЭ}
+\end{aligned}
+\end{equation*}
 \subsection{Разработка схемы, фиксирующей переполнение разрядной сетки}
 
 \subsection{Разработка схемы для определения знака суммы}
