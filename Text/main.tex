@@ -160,6 +160,90 @@
 
 \subsection{Разработка оптимальной схемы (с точки зрения критерия оптимальности) одноразрядного двоичного сумматора с учетом заданного базиса логических элементов}
 
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:tab1} Таблица}
+		\begin{tabular}{|c c c|c c|}
+			\hline
+			$a$ & $b$ & $c$ & $S$ & $P$ \\ \hline
+			0 & 0 & 0 & 0 & 0 \\ 
+			0 & 0 & 1 & 1 & 0 \\ 
+			0 & 1 & 0 & 1 & 0 \\ 
+			0 & 1 & 1 & 0 & 1 \\ \hline
+			1 & 0 & 0 & 1 & 0 \\ 
+			1 & 0 & 1 & 0 & 1 \\ 
+			1 & 1 & 0 & 0 & 1 \\ 
+			1 & 1 & 1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:tab2} Диаграмма $S$}
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$\overline{b}$} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  \\ \cline{2-5} 
+			& $\overline{c}$                     & \multicolumn{2}{c}{$c$}                          & $\overline{c}$                     
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:tab3} Диаграмма $P$}
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$\overline{b}$} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  \\ \cline{2-5} 
+			& $\overline{c}$                     & \multicolumn{2}{c}{$c$}                          & $\overline{c}$                     
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:tab4} Диаграмма $\overline{S}$}
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$\overline{b}$} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1}  \\ \cline{2-5} 
+			& $\overline{c}$                     & \multicolumn{2}{c}{$c$}                          & $\overline{c}$                     
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:tab5} Диаграмма $\overline{P}$}
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$\overline{b}$} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1}  \\ \cline{2-5} 
+			& $\overline{c}$                     & \multicolumn{2}{c}{$c$}                          & $\overline{c}$                     
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{equation}
+\begin{aligned}
+	S &= abc + a\bar{b}\bar{c} + \bar{a}\bar{b}c + \bar{a}b\bar{c} = \overline{\overline{abc} * \overline{a\bar{b}\bar{c}} * \overline{\bar{a}\bar{b}c} * \overline{\bar{a}b\bar{c}}} - \text{8ЛЭ} \\
+	S &= \overline{\overline{(\bar{a}+\bar{b}+c)} + \overline{(\bar{a}+b+\bar{c})} + \overline{(a+\bar{b}+\bar{c})} + \overline{(a+b+c)}} - \text{8ЛЭ}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+	P &= ab + ac + bc = \overline{\overline{ab} * \overline{ac} * \overline{bc}} - \text{4ЛЭ} \\
+	P &= \overline{\overline{(a+b)} + \overline{(a+c)} + \overline{(b+c)}} - \text{4ЛЭ}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+	S = \overline{(\bar{P} + abc) (a + b + c)} = \overline{\overline{(\bar{P} + \overline{\overline{abc}})} + \overline{(a+b+c)}} - \text{6ЛЭ}
+\end{equation}
+
 \subsection{Разработка схемы коррекции}
 
 \subsection{Разработка схемы одноразрядного десятичного сумматора}
