@@ -261,6 +261,41 @@ K &= \overline{\overline{(\bar{\gamma_8}+\bar{\text{П'}})} + \overline{(\bar{\g
 \end{aligned}
 \end{equation*}
 
+\begin{table}[H]
+	\begin{center}
+		\caption{Коррекция}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Перенос}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+
 \subsection{Разработка схемы одноразрядного десятичного сумматора}
 
 \section{Разработка дополнительных схем для функционирования многоразрядного десятичного сумматора}
@@ -294,6 +329,133 @@ K &= \overline{\overline{(\bar{\gamma_8}+\bar{\text{П'}})} + \overline{(\bar{\g
 \widehat{A_1} &= \overline{ae+\bar{a}\bar{e}} = \overline{\overline{(\bar{a}+\bar{e})}+\overline{(a+e)}} - \text{5ЛЭ}
 \end{aligned}
 \end{equation*}
+
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{$\hat{A_8}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                           & \multicolumn{4}{c}{$\bar{A_1}$}                                                                    &                      \\
+			& \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   & \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   &                      \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                      \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$              & \multicolumn{2}{c}{$A_4$}                         & \multicolumn{2}{c}{$\bar{A_4}$}                   & \multicolumn{2}{c}{$A_4$}                         & $\bar{A_4}$              &                     
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{$\bar{\hat{A_8}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+	& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+	\\
+	& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{$\hat{A_4}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{$\bar{\hat{A_4}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{$\hat{A_2}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{$\bar{\hat{A_2}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{$\hat{A_1}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{$\bar{\hat{A_1}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{minipage} 
+\end{table}
+
 \subsection{Разработка схемы, фиксирующей переполнение разрядной сетки}
 
 \subsection{Разработка схемы для определения знака суммы}
