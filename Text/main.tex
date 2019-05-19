@@ -1,10 +1,9 @@
 %!TEX TS-program = xelatex
-
-
-
 \documentclass[a4paper,14pt]{article}
 
 \input{data/preambular.tex}
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 2pt}}
 \begin{document} % конец преамбулы, начало документа
 \input{data/title.tex}
 
@@ -160,16 +159,28 @@
 
 \subsection{Разработка оптимальной схемы (с точки зрения критерия оптимальности) одноразрядного двоичного сумматора с учетом заданного базиса логических элементов}
 
+Разработаем схему одноразрядного двоичного сумматора в базисе И-НЕ, ИЛИ-НЕ.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{schemas/sm_el}
+	\caption{Одноразрядный двоичный сумматор}
+	\label{fig:sm_el}
+\end{figure}
+
+Входы a, b - первое и второе слагаемое, c - перенос из младшего разряда, S - сумма, P - перенос в старший разряд (Рис. \ref{fig:sm}).
+Далее будем изображать сумматор как на рис. \ref{fig:sm}.
+
 \begin{table}[H]
 	\begin{center}
-		\caption{\label{tab:tab1} Таблица}
+		\caption{\label{tab:tab1} Таблица истинности для выходов S и P}
 		\begin{tabular}{|c c c|c c|}
 			\hline
 			$a$ & $b$ & $c$ & $S$ & $P$ \\ \hline
 			0 & 0 & 0 & 0 & 0 \\ 
 			0 & 0 & 1 & 1 & 0 \\ 
 			0 & 1 & 0 & 1 & 0 \\ 
-			0 & 1 & 1 & 0 & 1 \\ \hline
+			0 & 1 & 1 & 0 & 1 \\ 
 			1 & 0 & 0 & 1 & 0 \\ 
 			1 & 0 & 1 & 0 & 1 \\ 
 			1 & 1 & 0 & 0 & 1 \\ 
@@ -180,7 +191,7 @@
 
 \begin{table}[H]
 	\begin{center}
-		\caption{\label{tab:tab2} Диаграмма $S$}
+		\caption{\label{tab:tab2} Диаграмма Вейча для функции $S$}
 		\begin{tabular}{ccccc}
 			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
 			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
@@ -192,7 +203,7 @@
 
 \begin{table}[H]
 	\begin{center}
-		\caption{\label{tab:tab3} Диаграмма $P$}
+		\caption{\label{tab:tab3} Диаграмма Вейча для функции $P$}
 		\begin{tabular}{ccccc}
 			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
 			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} \\ \cline{2-5} 
@@ -204,7 +215,7 @@
 
 \begin{table}[H]
 	\begin{center}
-		\caption{\label{tab:tab4} Диаграмма $\overline{S}$}
+		\caption{\label{tab:tab4} Диаграмма Вейча для функции $\overline{S}$}
 		\begin{tabular}{ccccc}
 			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
 			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{} \\ \cline{2-5} 
@@ -216,7 +227,7 @@
 
 \begin{table}[H]
 	\begin{center}
-		\caption{\label{tab:tab5} Диаграмма $\overline{P}$}
+		\caption{\label{tab:tab5} Диаграмма Вейча для функции $\overline{P}$}
 		\begin{tabular}{ccccc}
 			& \multicolumn{2}{c}{$a$}                           & \multicolumn{2}{c}{$\overline{a}$}                          \\ \cline{2-5} 
 			\multicolumn{1}{c|}{$b$}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
@@ -244,8 +255,96 @@
 	S = \overline{(\bar{P} + abc) (a + b + c)} = \overline{\overline{(\bar{P} + \overline{\overline{abc}})} + \overline{(a+b+c)}} - \text{6ЛЭ}
 \end{equation*}
 
+Наиболее оптимальный вариант проектирования -- выразить S через P (экономия 2ЛЭ), P можно выразить любым удобным способом.
+Потребуется 10 ЛЭ.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{schemas/sm}
+	\caption{Логическая схема одноразрядного двоичного сумматора}
+	\label{fig:sm}
+\end{figure}
 
 \subsection{Разработка схемы коррекции}
+
+Заметим, что при обработке сигнала в корректоре может быть или введена коррекция, или произведён перенос в следующий разряд.
+Учтём это при проектировании.
+$\gamma_8$, $\gamma_4$, $\gamma_2$, $\gamma_1$ -- результат сложения, П' -- перенос, получившийся при сложении.
+К -- необходимость ввода коррекции, П -- признак переноса разряда.
+
+\begin{table}[H]
+	\centering
+	\caption{\label{tab:dvKorr} Таблица истинности для функций $K$ и П в корректоре}
+	\begin{tabular}{|c|c|c|c|c?c|c|}
+		\hline
+		$\gamma_8$ & $\gamma_4$ & $\gamma_2$ & $\gamma_1$ & П' & K & П \\ \hline
+		0          & 0          & 0          & 0          & 0  & x & x \\ \hline
+		0          & 0          & 0          & 0          & 1  & 1 & 0 \\ \hline
+		0          & 0          & 0          & 1          & 0  & x & x \\ \hline
+		0          & 0          & 0          & 1          & 1  & 1 & 0 \\ \hline
+		0          & 0          & 1          & 0          & 0  & x & x \\ \hline
+		0          & 0          & 1          & 0          & 1  & 1 & 0 \\ \hline
+		0          & 0          & 1          & 1          & 0  & x & x \\ \hline
+		0          & 0          & 1          & 1          & 1  & 1 & 0 \\ \hline
+		0          & 1          & 0          & 0          & 0  & x & x \\ \hline
+		0          & 1          & 0          & 0          & 1  & 1 & 0 \\ \hline
+		0          & 1          & 0          & 1          & 0  & x & x \\ \hline
+		0          & 1          & 0          & 1          & 1  & 1 & 0 \\ \hline
+		0          & 1          & 1          & 0          & 0  & x & x \\ \hline
+		0          & 1          & 1          & 0          & 1  & 0 & 1 \\ \hline
+		0          & 1          & 1          & 1          & 0  & x & x \\ \hline
+		0          & 1          & 1          & 1          & 1  & 0 & 1 \\ \hline
+		1          & 0          & 0          & 0          & 0  & x & x \\ \hline
+		1          & 0          & 0          & 0          & 1  & 0 & 1 \\ \hline
+		1          & 0          & 0          & 1          & 0  & x & x \\ \hline
+		1          & 0          & 0          & 1          & 1  & 0 & 1 \\ \hline
+		1          & 0          & 1          & 0          & 0  & x & x \\ \hline
+		1          & 0          & 1          & 0          & 1  & 0 & 1 \\ \hline
+		1          & 0          & 1          & 1          & 0  & x & x \\ \hline
+		1          & 0          & 1          & 1          & 1  & 0 & 1 \\ \hline
+		1          & 1          & 0          & 0          & 0  & x & x \\ \hline
+		1          & 1          & 0          & 0          & 1  & 0 & 1 \\ \hline
+		1          & 1          & 0          & 1          & 0  & 1 & 0 \\ \hline
+		1          & 1          & 0          & 1          & 1  & 0 & 1 \\ \hline
+		1          & 1          & 1          & 0          & 0  & 1 & 0 \\ \hline
+		1          & 1          & 1          & 0          & 1  & 0 & 1 \\ \hline
+		1          & 1          & 1          & 1          & 0  & 1 & 0 \\ \hline
+		1          & 1          & 1          & 1          & 1  & x & x \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Коррекция}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$\sqcap'$} & \multicolumn{4}{c}{$\bar{\sqcap'}$} &  \\
+			& \multicolumn{2}{c}{$\gamma_8$} & \multicolumn{2}{c}{$\bar{\gamma_8}$} & \multicolumn{2}{c}{$\gamma_8$} & \multicolumn{2}{c}{$\bar{\gamma_8}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\gamma_4$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{\gamma_1}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$\gamma_1$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{\gamma_4}$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{\gamma_1}$ \\ \cline{2-9}
+			\\
+			& $\bar{\gamma_2}$ & \multicolumn{2}{c}{$\gamma_2$} & \multicolumn{2}{c}{$\bar{\gamma_2}$} & \multicolumn{2}{c}{$\gamma_2$} & $\bar{\gamma_2}$ & 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Перенос}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$\sqcap'$} & \multicolumn{4}{c}{$\bar{\sqcap'}$} &  \\
+			& \multicolumn{2}{c}{$\gamma_8$} & \multicolumn{2}{c}{$\bar{\gamma_8}$} & \multicolumn{2}{c}{$\gamma_8$} & \multicolumn{2}{c}{$\bar{\gamma_8}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\gamma_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{\gamma_1}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$\gamma_1$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{\gamma_4}$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{\gamma_1}$ \\ \cline{2-9}
+			\\
+			& $\bar{\gamma_2}$ & \multicolumn{2}{c}{$\gamma_2$} & \multicolumn{2}{c}{$\bar{\gamma_2}$} & \multicolumn{2}{c}{$\gamma_2$} & $\bar{\gamma_2}$ & 
+		\end{tabular}
+	\end{center}
+\end{table}
+
 
 \begin{equation*}
 \begin{aligned}
@@ -261,46 +360,217 @@ K &= \overline{\overline{(\bar{\gamma_8}+\bar{\text{П'}})} + \overline{(\bar{\g
 \end{aligned}
 \end{equation*}
 
-\begin{table}[H]
-	\begin{center}
-		\caption{Коррекция}
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
-			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
-		\end{tabular}
-	\end{center}
-\end{table}
+Получим П с помощью 3ЛЭ, затем за 1ЛЭ получим из него К (Рис. \ref{fig:corr}).
 
-\begin{table}[H]
-	\begin{center}
-		\caption{Перенос}
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
-			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
-		\end{tabular}
-	\end{center}
-\end{table}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{schemas/corr}
+	\caption{Логическая схема корректора}
+	\label{fig:corr}
+\end{figure}
 
+Получим П с помощью 3ЛЭ, затем за 1ЛЭ получим из него К (Рис. \ref{fig:corr}).
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{schemas/corr_el}
+	\caption{Обозначение схема корректора}
+	\label{fig:corr_el}
+\end{figure}
 
 \subsection{Разработка схемы одноразрядного десятичного сумматора}
+
+Итоговый вид:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{schemas/dc}
+	\caption{Логическая схема одноразрядного сумматора}
+	\label{fig:dc}
+\end{figure}
+
+Далее будем обозначать как:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{schemas/dc_el}
+	\caption{Одноразрядный сумматора}
+	\label{fig:dcdc_el}
+\end{figure}
 
 \section{Разработка дополнительных схем для функционирования многоразрядного десятичного сумматора}
 
 \subsection{Разработка преобразователя прямого кода в обратный для работы с отрицательными величинами}
+
+Составим схему преобразователя в обратный код из прямого.
+$a_i$ -- исходное значение, $\widehat{a_i}$ -- преобразованное. 
+$a_0$ -- знак, не изменяется.
+
+\begin{table}[H]
+	\centering
+	\caption{\label{tab:dvNeg} Таблица истинности для функций$\widehat{A_8}$, $\widehat{a_4}$, $\widehat{a_2}$, $\widehat{a_1}$}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$a_0$ & $a_8$ & $a_4$ & $a_2$ & $a_1$ & $\widehat{A_8}$ & $\widehat{a_4}$ & $\widehat{a_2}$ & $\widehat{a_1}$ \\ \hline
+		0     & 0     & 0     & 0     & 0     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 0     & 0     & 1     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 0     & 1     & 0     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 0     & 1     & 1     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 1     & 0     & 0     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 1     & 0     & 1     & x               & x               & x               & x               \\ \hline
+		0     & 0     & 1     & 1     & 0     & 0               & 1               & 1               & 0               \\ \hline
+		0     & 0     & 1     & 1     & 1     & 0               & 1               & 1               & 1               \\ \hline
+		0     & 1     & 0     & 0     & 0     & 1               & 0               & 0               & 0               \\ \hline
+		0     & 1     & 0     & 0     & 1     & 1               & 0               & 0               & 1               \\ \hline
+		0     & 1     & 0     & 1     & 0     & 1               & 0               & 1               & 0               \\ \hline
+		0     & 1     & 0     & 1     & 1     & 1               & 0               & 1               & 1               \\ \hline
+		0     & 1     & 1     & 0     & 0     & 1               & 1               & 0               & 0               \\ \hline
+		0     & 1     & 1     & 0     & 1     & 1               & 1               & 0               & 1               \\ \hline
+		0     & 1     & 1     & 1     & 0     & 1               & 1               & 1               & 0               \\ \hline
+		0     & 1     & 1     & 1     & 1     & 1               & 1               & 1               & 1               \\ \hline
+		1     & 0     & 0     & 0     & 0     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 0     & 0     & 1     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 0     & 1     & 0     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 0     & 1     & 1     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 1     & 0     & 0     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 1     & 0     & 1     & x               & x               & x               & x               \\ \hline
+		1     & 0     & 1     & 1     & 0     & 1               & 1               & 1               & 1               \\ \hline
+		1     & 0     & 1     & 1     & 1     & 1               & 1               & 1               & 0               \\ \hline
+		1     & 1     & 0     & 0     & 0     & 1               & 1               & 0               & 1               \\ \hline
+		1     & 1     & 0     & 0     & 1     & 1               & 1               & 0               & 0               \\ \hline
+		1     & 1     & 0     & 1     & 0     & 1               & 0               & 1               & 1               \\ \hline
+		1     & 1     & 0     & 1     & 1     & 1               & 0               & 1               & 0               \\ \hline
+		1     & 1     & 1     & 0     & 0     & 1               & 0               & 0               & 1               \\ \hline
+		1     & 1     & 1     & 0     & 1     & 1               & 0               & 0               & 0               \\ \hline
+		1     & 1     & 1     & 1     & 0     & 0               & 1               & 1               & 1               \\ \hline
+		1     & 1     & 1     & 1     & 1     & 0               & 1               & 1               & 0               \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\caption{Диаграмма Вейча для функции $\hat{A_8}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                           & \multicolumn{4}{c}{$\bar{A_1}$}                                                                    &                      \\
+			& \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   & \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   &                      \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                      \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$              & \multicolumn{2}{c}{$A_4$}                         & \multicolumn{2}{c}{$\bar{A_4}$}                   & \multicolumn{2}{c}{$A_4$}                         & $\bar{A_4}$              &                     
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Диаграмма Вейча для функции $\bar{\hat{A_8}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+	& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+	\\
+	& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\caption{Диаграмма Вейча для функции $\hat{A_4}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Диаграмма Вейча для функции $\bar{\hat{A_4}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\caption{Диаграмма Вейча для функции $\hat{A_2}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Диаграмма Вейча для функции $\bar{\hat{A_2}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
+			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
+			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
+		\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\caption{Диаграмма Вейча для функции $\hat{A_1}$}
+		\centering
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Диаграмма Вейча для функции $\bar{\hat{A_1}}$}
+		\begin{tabular}{cccccccccc}
+			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
+			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$ \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
+			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
+			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
+			\\
+			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
+		\end{tabular}
+	\end{minipage} 
+\end{table}
 
 \begin{equation*}
 \begin{aligned}
@@ -330,131 +600,6 @@ K &= \overline{\overline{(\bar{\gamma_8}+\bar{\text{П'}})} + \overline{(\bar{\g
 \end{aligned}
 \end{equation*}
 
-
-\begin{table}[!htb]
-	\begin{minipage}{.5\linewidth}
-		\caption{$\hat{A_8}$}
-		\centering
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$}                                                                           & \multicolumn{4}{c}{$\bar{A_1}$}                                                                    &                      \\
-			& \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   & \multicolumn{2}{c}{$A_0$}                         & \multicolumn{2}{c}{$\bar{A_0}$}                   &                      \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                      \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                           & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$              & \multicolumn{2}{c}{$A_4$}                         & \multicolumn{2}{c}{$\bar{A_4}$}                   & \multicolumn{2}{c}{$A_4$}                         & $\bar{A_4}$              &                     
-		\end{tabular}
-	\end{minipage}%
-	\begin{minipage}{.5\linewidth}
-		\centering
-		\caption{$\bar{\hat{A_8}}$}
-\begin{tabular}{cccccccccc}
-	& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
-	& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
-	\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
-	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-	\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
-	\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-	\\
-	& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
-\end{tabular}
-	\end{minipage} 
-\end{table}
-
-
-\begin{table}[!htb]
-	\begin{minipage}{.5\linewidth}
-		\caption{$\hat{A_4}$}
-		\centering
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
-			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
-		\end{tabular}
-	\end{minipage}%
-	\begin{minipage}{.5\linewidth}
-		\centering
-		\caption{$\bar{\hat{A_4}}$}
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
-			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
-		\end{tabular}
-	\end{minipage} 
-\end{table}
-
-\begin{table}[!htb]
-	\begin{minipage}{.5\linewidth}
-		\caption{$\hat{A_2}$}
-		\centering
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
-			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\bar{A_2}$            \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
-		\end{tabular}
-	\end{minipage}%
-	\begin{minipage}{.5\linewidth}
-		\centering
-		\caption{$\bar{\hat{A_2}}$}
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$}                                                                         & \multicolumn{4}{c}{$\bar{A_1}$}                                                                   &                        \\
-			& \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 & \multicolumn{2}{c}{$A_0$}                       & \multicolumn{2}{c}{$\bar{A_0}$}                 &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}}       & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$            \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} &                        \\ \cline{2-9}
-			\multicolumn{1}{c|}{}                             & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$            \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$            & \multicolumn{2}{c}{$A_4$}                       & \multicolumn{2}{c}{$\bar{A_4}$}                 & \multicolumn{2}{c}{$A_4$}                       & $\bar{A_4}$            &                       
-		\end{tabular}
-	\end{minipage} 
-\end{table}
-
-\begin{table}[!htb]
-	\begin{minipage}{.5\linewidth}
-		\caption{$\hat{A_1}$}
-		\centering
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
-			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\bar{A_2}$ \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
-		\end{tabular}
-	\end{minipage}%
-	\begin{minipage}{.5\linewidth}
-		\centering
-		\caption{$\bar{\hat{A_1}}$}
-		\begin{tabular}{cccccccccc}
-			& \multicolumn{4}{c}{$A_1$} & \multicolumn{4}{c}{$\bar{A_1}$} &  \\
-			& \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} & \multicolumn{2}{c}{$A_0$} & \multicolumn{2}{c}{$\bar{A_0}$} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$A_8$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\bar{A_2}$ \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$A_2$} \\ \cline{2-9}
-			\multicolumn{1}{c|}{\multirow{2}{*}{$\bar{A_8}$}} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} &  \\ \cline{2-9}
-			\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & $\bar{A_2}$ \\ \cline{2-9}
-			\\
-			& $\bar{A_4}$ & \multicolumn{2}{c}{$A_4$} & \multicolumn{2}{c}{$\bar{A_4}$} & \multicolumn{2}{c}{$A_4$} & $\bar{A_4}$ & 
-		\end{tabular}
-	\end{minipage} 
-\end{table}
 
 \subsection{Разработка схемы, фиксирующей переполнение разрядной сетки}
 
