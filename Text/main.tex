@@ -411,7 +411,7 @@ $a_0$ -- знак, не изменяется.
 	\caption{\label{tab:dvNeg} Таблица истинности для функций$\widehat{A_8}$, $\widehat{a_4}$, $\widehat{a_2}$, $\widehat{a_1}$}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 		\hline
-		$a_0$ & $a_8$ & $a_4$ & $a_2$ & $a_1$ & $\widehat{A_8}$ & $\widehat{a_4}$ & $\widehat{a_2}$ & $\widehat{a_1}$ \\ \hline
+		$a_0$ & $a_8$ & $a_4$ & $a_2$ & $a_1$ & $\widehat{a_8}$ & $\widehat{a_4}$ & $\widehat{a_2}$ & $\widehat{a_1}$ \\ \hline
 		0     & 0     & 0     & 0     & 0     & x               & x               & x               & x               \\ \hline
 		0     & 0     & 0     & 0     & 1     & x               & x               & x               & x               \\ \hline
 		0     & 0     & 0     & 1     & 0     & x               & x               & x               & x               \\ \hline
@@ -574,32 +574,51 @@ $a_0$ -- знак, не изменяется.
 
 \begin{equation*}
 \begin{aligned}
-\widehat{A_8} &= \bar{d} + \bar{c} + \bar{a}b + a\bar{b} = \overline{d*c*\overline{\bar{a}b}*\overline{a\bar{b}}} - \text{5ЛЭ} \\
-\widehat{A_8} &= \overline{abc+\bar{a}\bar{b}} = \overline{\overline{(\bar{a}+\bar{b}+\bar{c})}+\overline{(a+b)}} - \text{6ЛЭ}
+\widehat{A_8} &= \bar{a_2} + \bar{a_4} + \bar{a_0}a_8 + a_0\bar{a_8} = \overline{a_2*a_4*\overline{\bar{a_0}a_8}*\overline{a_0\bar{a_8}}} - \text{5ЛЭ|3ЛЭ} \\
+\widehat{A_8} &= \overline{abc+\bar{a_0}\bar{a_8}} = \overline{\overline{(\bar{a_0}+\bar{a_8}+\bar{a_4})}+\overline{(a_0+a_8)}} - \text{6ЛЭ|3ЛЭ}
 \end{aligned}
 \end{equation*}
 
 \begin{equation*}
 \begin{aligned}
-\widehat{A_4} &= a\bar{c}\bar{d} + cd + \bar{a}c = \overline{\overline{a\bar{c}\bar{d}}*\overline{cd}*\overline{\bar{a}c}} - \text{7ЛЭ} \\
-\widehat{A_4} &= \overline{ac\bar{d} + \bar{a}\bar{c}}  = 
-\overline{\overline{(a+\bar{c}+d)+\overline{(a+c)}}}- \text{4ЛЭ}
+\widehat{A_4} &= a_0\bar{a_4}\bar{a_2} + cd + \bar{a_0}a_4 = \overline{\overline{a_0\bar{a_4}\bar{a_2}}*\overline{cd}*\overline{\bar{a_0}a_4}} - \text{7ЛЭ|4ЛЭ} \\
+\widehat{A_4} &= \overline{ac\bar{a_2} + \bar{a_0}\bar{a_4}}  = 
+\overline{\overline{(a_0+\bar{a_4}+a_2)}+\overline{(a_0+a_4)}}- \text{4ЛЭ|3ЛЭ}
 \end{aligned}
 \end{equation*}
 
 \begin{equation*}
 \begin{aligned}
-\widehat{A_2} &= d - \text{0ЛЭ}
+\widehat{A_2} &= a_2 - \text{0ЛЭ}
 \end{aligned}
 \end{equation*}
 
 \begin{equation*}
 \begin{aligned}
-\widehat{A_1} &= \bar{a}e + a\bar{e} = \overline{\overline{\bar{a}e}*a\bar{e}} - \text{5ЛЭ} \\
-\widehat{A_1} &= \overline{ae+\bar{a}\bar{e}} = \overline{\overline{(\bar{a}+\bar{e})}+\overline{(a+e)}} - \text{5ЛЭ}
+\widehat{A_1} &= \bar{a_0}a_1 + a_0\bar{a_1} = \overline{\overline{\bar{a_0}a_1}*a_0\bar{a_1}} - \text{5ЛЭ|3ЛЭ} \\
+\widehat{A_1} &= \overline{ae+\bar{a_0}\bar{a_1}} = \overline{\overline{(\bar{a_0}+\bar{a_1})}+\overline{(a_0+a_1)}} - \text{5ЛЭ|3ЛЭ}
 \end{aligned}
 \end{equation*}
 
+Через черту указано количество логических элементов без учёта отрицания простых сигналов.
+
+Построим итоговую схему на основе данных:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{schemas/pr}
+	\caption{Логическая схема преобразователя}
+	\label{fig:pr}
+\end{figure}
+
+Далее схему будем обозначать следующим образом:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{schemas/pr_el}
+	\caption{Обозначение схемы преобразователя}
+	\label{fig:pr_el}
+\end{figure}
 
 \subsection{Разработка схемы, фиксирующей переполнение разрядной сетки}
 
