@@ -820,6 +820,47 @@ $0001,0000 - 17$ раз$, 0010, 0100, 1000$
 
 \subsection{Разработка схемы для получения управляющих сигналов и схемы пуска выполнения операции сложения}
 
+Имея комбинацию выходных сигналов, составим таблицу истинности для генератора сигналов.
+
+
+
+\begin{landscape}
+	\begin{table}[H]
+		\begin{center}
+			\caption{\label{tab:rasp} Таблица истинности для генератора сигналов}
+			
+\begin{tabular}{|c|c|c|c|c?c|c|c|c|c?c|c|c|c|c?c|c|c|c|c?c|c|c|c|}
+	\hline
+	\multicolumn{5}{|c|}{Такт $n$}        & \multicolumn{5}{c|}{Такт $n+1$}       & \multicolumn{5}{c|}{Значения функций}                                                                  & \multicolumn{5}{c|}{Сигнал на триггер} & \multicolumn{4}{c|}{Сихнхроимпульсы} \\ \hline
+	$Q^5$ & $Q^4$ & $Q^3$ & $Q^2$ & $Q^1$ & $Q^5$ & $Q^4$ & $Q^3$ & $Q^2$ & $Q^1$ & $F_5$              & $F_4$              & $F_3$              & $F_2$              & $F_1$              & $D_5$  & $D_4$ & $D_3$ & $D_2$ & $D_1$ & СИ4     & СИ3     & СИ2     & СИ1    \\ \hline
+	0     & 0     & 0     & 0     & 0     & 0     & 0     & 0     & 0     & 1     & 0                  & 0                  & 0                  & 0                  & $\bigtriangleup$   & 0      & 0     & 0     & 0     & 1     & 0       & 0       & 0       & 1      \\ \hline
+	0     & 0     & 0     & 0     & 1     & 0     & 0     & 0     & 1     & 0     & 0                  & 0                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & 0      & 0     & 0     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 0     & 1     & 0     & 0     & 0     & 0     & 1     & 1     & 0                  & 0                  & 0                  & 1                  & $\bigtriangleup$   & 0      & 0     & 0     & 1     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 0     & 1     & 1     & 0     & 0     & 1     & 0     & 0     & 0                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & $\bigtriangledown$ & 0      & 0     & 1     & 0     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 1     & 0     & 0     & 0     & 0     & 1     & 0     & 1     & 0                  & 0                  & 1                  & 0                  & $\bigtriangleup$   & 0      & 0     & 1     & 0     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 1     & 0     & 1     & 0     & 0     & 1     & 1     & 0     & 0                  & 0                  & 1                  & $\bigtriangleup$   & $\bigtriangledown$ & 0      & 0     & 1     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 1     & 1     & 0     & 0     & 0     & 1     & 1     & 1     & 0                  & 0                  & 1                  & 1                  & $\bigtriangleup$   & 0      & 0     & 1     & 1     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 0     & 1     & 1     & 1     & 0     & 1     & 0     & 0     & 0     & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & $\bigtriangledown$ & $\bigtriangledown$ & 0      & 1     & 0     & 0     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 0     & 0     & 0     & 0     & 1     & 0     & 0     & 1     & 0                  & 1                  & 0                  & 0                  & $\bigtriangleup$   & 0      & 1     & 0     & 0     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 0     & 0     & 1     & 0     & 1     & 0     & 1     & 0     & 0                  & 1                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & 0      & 1     & 0     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 0     & 1     & 0     & 0     & 1     & 0     & 1     & 1     & 0                  & 1                  & 0                  & 1                  & $\bigtriangleup$   & 0      & 1     & 0     & 1     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 0     & 1     & 1     & 0     & 1     & 1     & 0     & 0     & 0                  & 1                  & $\bigtriangleup$   & $\bigtriangledown$ & $\bigtriangledown$ & 0      & 1     & 1     & 0     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 1     & 0     & 0     & 0     & 1     & 1     & 0     & 1     & 0                  & 1                  & 1                  & 0                  & $\bigtriangleup$   & 0      & 1     & 1     & 0     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 1     & 0     & 1     & 0     & 1     & 1     & 1     & 0     & 0                  & 1                  & 1                  & $\bigtriangleup$   & $\bigtriangledown$ & 0      & 1     & 1     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 1     & 1     & 0     & 0     & 1     & 1     & 1     & 1     & 0                  & 1                  & 1                  & 1                  & $\bigtriangleup$   & 0      & 1     & 1     & 1     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	0     & 1     & 1     & 1     & 1     & 1     & 0     & 0     & 0     & 1     & $\bigtriangleup$   & $\bigtriangledown$ & $\bigtriangledown$ & $\bigtriangledown$ & $\bigtriangledown$ & 1      & 0     & 0     & 0     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	1     & 0     & 0     & 0     & 1     & 1     & 0     & 0     & 0     & 1     & 1                  & 0                  & 0                  & 0                  & $\bigtriangleup$   & 1      & 0     & 0     & 0     & 1     & 0       & 0       & 0       & 0      \\ \hline
+	1     & 0     & 0     & 0     & 1     & 1     & 0     & 0     & 1     & 1     & 1                  & 0                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & 1      & 0     & 0     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
+	1     & 0     & 0     & 1     & 1     & 1     & 0     & 0     & 1     & 1     & 1                  & 0                  & 0                  & 1                  & $\bigtriangleup$   & 1      & 0     & 0     & 1     & 1     & 0       & 0       & 1       & 0      \\ \hline
+	1     & 0     & 0     & 1     & 1     & 1     & 0     & 1     & 0     & 0     & 1                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & $\bigtriangledown$ & 1      & 0     & 1     & 0     & 0     & 0       & 1       & 0       & 0      \\ \hline
+	1     & 0     & 1     & 0     & 0     & 0     & 0     & 0     & 0     & 0     & $\bigtriangledown$ & 0                  & $\bigtriangledown$ & 0                  & 0                  & 0      & 0     & 0     & 0     & 0     & 1       & 0       & 0       & 0      \\ \hline
+\end{tabular}
+			
+		\end{center}
+	\end{table}
+\end{landscape}
+
+
 \section{Общая структура схемы многоразрядного десятичного сумматора комбинационного типа с устройством управления}
 
 \section{Выводы по работе}
