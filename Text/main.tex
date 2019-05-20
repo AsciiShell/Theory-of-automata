@@ -831,7 +831,7 @@ $0001,0000 - 17$ раз$, 0010, 0100, 1000$
 			
 \begin{tabular}{|c|c|c|c|c?c|c|c|c|c?c|c|c|c|c?c|c|c|c|c?c|c|c|c|}
 	\hline
-	\multicolumn{5}{|c|}{Такт $n$}        & \multicolumn{5}{c|}{Такт $n+1$}       & \multicolumn{5}{c|}{Значения функций}                                                                  & \multicolumn{5}{c|}{Сигнал на триггер} & \multicolumn{4}{c|}{Сихнхроимпульсы} \\ \hline
+	\multicolumn{5}{|c|}{Такт $n$}        & \multicolumn{5}{c|}{Такт $n+1$}       & \multicolumn{5}{c|}{Функция переходов}                                                                  & \multicolumn{5}{c|}{Функция переключения} & \multicolumn{4}{c|}{Сихнхроимпульсы} \\ \hline
 	$Q^5$ & $Q^4$ & $Q^3$ & $Q^2$ & $Q^1$ & $Q^5$ & $Q^4$ & $Q^3$ & $Q^2$ & $Q^1$ & $F_5$              & $F_4$              & $F_3$              & $F_2$              & $F_1$              & $D_5$  & $D_4$ & $D_3$ & $D_2$ & $D_1$ & СИ4     & СИ3     & СИ2     & СИ1    \\ \hline
 	0     & 0     & 0     & 0     & 0     & 0     & 0     & 0     & 0     & 1     & 0                  & 0                  & 0                  & 0                  & $\bigtriangleup$   & 0      & 0     & 0     & 0     & 1     & 0       & 0       & 0       & 1      \\ \hline
 	0     & 0     & 0     & 0     & 1     & 0     & 0     & 0     & 1     & 0     & 0                  & 0                  & 0                  & $\bigtriangleup$   & $\bigtriangledown$ & 0      & 0     & 0     & 1     & 0     & 0       & 0       & 0       & 0      \\ \hline
@@ -860,7 +860,284 @@ $0001,0000 - 17$ раз$, 0010, 0100, 1000$
 	\end{table}
 \end{landscape}
 
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $D_5$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                        & \multicolumn{4}{c}{$\overline{Q}_1$}                                                            &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}           & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $\overline{D}_5$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
 
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $D_4$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $\overline{D}_4$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $D_3$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                             &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}           &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $\overline{D}_3$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                             &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}           &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                           &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $D_2$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $\overline{D}_2$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $D_1$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                       & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                      & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для функции переключения триггера  $\overline{D}_1$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                            &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                           &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для $\text{СИ4}$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                       & \multicolumn{4}{c}{$\overline{Q}_1$}                                                            &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                      & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для $\overline{\text{СИ4}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для $\text{СИ3}$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                       & \multicolumn{4}{c}{$\overline{Q}_1$}                                                            &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                      & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для $\overline{\text{СИ3}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для $\text{СИ2}$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                       & \multicolumn{4}{c}{$\overline{Q}_1$}                                                            &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           &                       &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                      & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$      &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для $\overline{\text{СИ2}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
+
+\begin{table}[H]
+	\begin{minipage}{.5\linewidth}
+		\tablecaption{Диаграмма Вейча для $\text{СИ1}$}
+		\centering
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                       & \multicolumn{4}{c}{$\overline{Q}_1$}                                                             &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}          & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}           &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           & \multicolumn{2}{c}{}                           &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                      & \multicolumn{2}{c}{$\overline{Q}_3$}           & \multicolumn{2}{c}{$Q_3$}                      & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\tablecaption{Диаграмма Вейча для $\overline{\text{СИ1}}$}
+\begin{tabular}{cccccccccc}
+	& \multicolumn{4}{c}{$Q_1$}                                                                         & \multicolumn{4}{c}{$\overline{Q}_1$}                                                              &                        \\
+	& \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            & \multicolumn{2}{c}{$Q_5$}                       & \multicolumn{2}{c}{$\overline{Q}_5$}            &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$Q_4$}}            & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & $\overline{Q}_2$       \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multirow{2}{*}{$Q_2$} \\ \cline{2-9}
+	\multicolumn{1}{c|}{\multirow{2}{*}{$\overline{Q}_4$}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &                        \\ \cline{2-9}
+	\multicolumn{1}{c|}{}                                  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{x} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & $\overline{Q}_2$       \\ \cline{2-9}
+	&                        & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            & \multicolumn{2}{c}{}                            &                        &                        \\
+	& $\overline{Q}_3$       & \multicolumn{2}{c}{$Q_3$}                       & \multicolumn{2}{c}{$\overline{Q}_3$}            & \multicolumn{2}{c}{$Q_3$}                       & $\overline{Q}_3$       &                       
+\end{tabular}
+	\end{minipage} 
+\end{table}
 \section{Общая структура схемы многоразрядного десятичного сумматора комбинационного типа с устройством управления}
 
 \section{Выводы по работе}
