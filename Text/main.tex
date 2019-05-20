@@ -622,6 +622,78 @@ $a_0$ -- знак, не изменяется.
 
 \subsection{Разработка схемы, фиксирующей переполнение разрядной сетки}
 
+Переполнение разрядной сетки происходит, когда:
+\begin{itemize}
+	\item При сложении двух положительных величин получается отрицательный результат.
+	
+	\item При сложении двух отрицательных величин получается положительный результат.	
+\end{itemize}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:perSet} Таблица истинности для функции $\varphi$}
+		
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			a0 & b0 & c0 & $\varphi$ \\ \hline
+			0  & 0  & 0  & 0  \\ \hline
+			0  & 0  & 1  & 1  \\ \hline
+			0  & 1  & 0  & 0  \\ \hline
+			0  & 1  & 1  & 0  \\ \hline
+			1  & 0  & 0  & 0  \\ \hline
+			1  & 0  & 1  & 0  \\ \hline
+			1  & 1  & 0  & 1  \\ \hline
+			1  & 1  & 1  & 0  \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:perSet_force} Диаграмма Вейча для функции  $\varphi$}
+		
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a_0$}                      & \multicolumn{2}{c}{$a_0$}                      \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b_0$} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b_0$} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{} \\ \cline{2-5} 
+			& $\bar{c_0}$            & \multicolumn{2}{c}{$c_0$}                      & $\bar{c_0}$          
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{\label{tab:perSet_ve} Диаграмма Вейча для функции  $\bar{\varphi}$}
+		
+		\begin{tabular}{ccccc}
+			& \multicolumn{2}{c}{$a_0$}                           & \multicolumn{2}{c}{$\bar{a_0}$}                          \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$b_0$}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
+			\multicolumn{1}{c|}{$\bar{b_0}$} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{1} \\ \cline{2-5} 
+			& $\bar{c_0}$                    & \multicolumn{2}{c}{$c_0$}                           & $\bar{c_0}$                   
+		\end{tabular}
+	\end{center}
+\end{table}
+
+$$\varphi = ab\bar{c} + \bar{a}\bar{b}c =\overline{ \overline{ab\bar{c}} + \overline{\bar{a}\bar{b}c}} \text{ --  6ЛЭ}$$
+
+$$\varphi = \overline{a\bar{b} + bc + \bar{a}\bar{c}} =  \overline{\overline{(\bar{a} + b)} +\overline{(\bar{b} + \bar{c})} + \overline{(a + c)}} \text{ --  7ЛЭ}$$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{schemas/per}
+	\caption{Логическая схема, фиксирующая переполнение разрядной сетки}
+	\label{fig:per}
+\end{figure}
+
+В дальнейшем будем обозначать эту схему следующим образом:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\linewidth]{schemas/per_el}
+	\caption{Обозначение логической схемы, фиксирующаей переполнение разрядной сетки}
+	\label{fig:per_el}
+\end{figure}
+
 \subsection{Разработка схемы для определения знака суммы}
 
 \section{Разработки функциональной схемы многоразрядного десятичного сумматора}
