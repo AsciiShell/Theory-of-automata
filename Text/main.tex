@@ -1138,6 +1138,48 @@ $0001,0000 - 17$ раз$, 0010, 0100, 1000$
 \end{tabular}
 	\end{minipage} 
 \end{table}
+
+$$ D_5 =\overline{\overline{Q_1 Q_2 Q_3 Q_4} * \overline{Q_5 \bar{Q_3}}} \text{ -- 4|3ЛЭ} $$
+
+$$ D_5 =\overline{\overline{\bar{Q_4} + Q_2 } + \overline{Q_3 + Q_5} + \overline{Q_3 + Q_4} + \overline{Q_1 + Q_4}} \text{ -- 6|5ЛЭ} $$
+
+$$ D_4 =\overline{\overline{Q_4 \bar{Q_2}} * \overline{Q_4 \bar{Q_3}} * \overline{Q_1 \bar{Q_4} Q_3 } } \text{ -- 6|4ЛЭ} $$
+
+$$ D_4 =\overline{\overline{\bar{Q_1} + \bar{Q_2} + \bar{Q_3} + \bar{Q_4}} + \overline{Q_3 + Q_4} + \overline{Q_2 + Q_4} + \overline{{Q_1 + Q_4}}} \text{ -- 9|5ЛЭ} $$
+
+$$ D_3 =\overline{\overline{Q_1 Q_2 \bar{Q_3}} * \overline{Q_1 Q_3 \bar{Q_2}} * \overline{\bar{Q_1} Q_3 \bar{Q_5}}} \text{ -- 8|4ЛЭ} $$
+
+$$ D_3 =\overline{\overline{\bar{Q_1} \bar{Q_2} \bar{Q_3}} + \overline{Q_2 + Q_3} + \overline{Q_1 + \bar{Q_5}} + \overline{Q_1 + Q_3}} \text{ -- 9|5ЛЭ} $$
+
+$$ D_2 =\overline{\overline{Q_1  \bar{Q_2}} * \overline{Q_2  \bar{Q_1}}} \text{ -- 5|3ЛЭ} $$
+
+$$ D_2 =\overline{\overline{\bar{Q_1} + \bar{Q_2}} + \overline{Q_1 + Q_2}} \text{ -- 5|3ЛЭ} $$
+
+$$ D_1 =\overline{\overline{\bar{Q_1}  \bar{Q_3}} * \overline{\bar{Q_1}  \bar{Q_5}}} \text{ -- 6|3ЛЭ} $$
+
+$$ D_1 =\overline{\overline{\bar{Q_3} + \bar{Q_5}} + Q_1} \text{ -- 4|2ЛЭ} $$
+
+$$ \text{СИ4} =\overline{\overline{Q_3Q_5}} \text{ -- 2|2ЛЭ} $$
+
+$$ \text{СИ4} =\overline{\overline{Q_3} + \overline{Q_5}} \text{ -- 3|1ЛЭ} $$
+
+$$ \text{СИ3} =\overline{\overline{Q_1Q_2Q_5}} \text{ -- 2|2ЛЭ} $$
+
+$$ \text{СИ3} =\overline{\overline{Q_1} + \overline{Q_2} + \overline{Q_5}} \text{ -- 4|1ЛЭ} $$
+
+$$ \text{СИ2} =\overline{\overline{\bar{Q_1}Q_2Q_5}} \text{ -- 3|2ЛЭ} $$
+
+$$ \text{СИ2} =\overline{Q_1 + \overline{Q_2} + \overline{Q_5}} \text{ -- 3|1ЛЭ} $$
+
+$$ \text{СИ1} =\overline{\overline{\bar{Q_1}\bar{Q_2}\bar{Q_3}\bar{Q_4}\bar{Q_5}}} \text{ -- 7|2ЛЭ} $$
+
+$$ \text{СИ1} =\overline{Q_1 + Q_2 + Q_3 + Q_4 + Q_5} \text{ -- 1|1ЛЭ} $$
+
+После формул записано число логических элементов, необходимых для проектирования данной схемы.
+Сначала идёт число с учётом проектирования инверсий сигналов, после -- без.
+Так как количество элементов большое и все инверсии будут в любом случае спроектированы, будем выбирать тот вариант, который содержит минимальное число ЛЭ без учёта инверсий.
+
+
 \section{Общая структура схемы многоразрядного десятичного сумматора комбинационного типа с устройством управления}
 
 \section{Выводы по работе}
